@@ -1,2 +1,8 @@
-# hoop3
-Higher-order optimization methods library for solving logistic regression and optimal transport problems.
+# Hoop3
+
+### Overview
+
+### Installation instructions
+
+### Examples
+
