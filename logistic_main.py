@@ -37,33 +37,6 @@ def classification_accuracy(labels: np.array, X: np.array, theta: np.array) -> n
     return (len(labels) - num_different) / len(labels)
 
 
-def l3_compute(y: np.array, X: np.array, theta: np.array) -> float:
-    """
-    Used for exploration of Lipschitz constant of third order.
-    :param y: labels.
-    :param X: data matrix.
-    :param theta: weights.
-    :return: lower bound of L3.
-    """
-    N = len(y)  # number of data points
-    F = X.shape[1]  # number of features
-
-    z = y*(X@theta)
-
-    lower_bound = 0.0
-
-    for w in range(F):
-        for j in range(F):
-            for k in range(F):
-                for l in range(F):
-                    sum_wjkl = 0
-                    for i in range(N):
-                        sum_wjkl += X[i, w]*X[i, j]*X[i, k]*X[i, l]*((np.exp(-z[i])-3*np.exp(-3*z[i]))*(1+np.exp(-z[i]))-4*np.exp(-z[i])*(np.exp(-z[i])-np.exp(-3*z[i])))/np.power(1 + np.exp(z[i]), 5)
-                        lower_bound += sum_wjkl**2
-
-    return lower_bound/N
-
-
 if __name__ == '__main__':
     d = 25  # dimension of feature space
     N = 100  # number of data points
@@ -80,6 +53,11 @@ if __name__ == '__main__':
     logistic_problem = LogisticFunctions(data_matrix=X, labels=y, use_gpu=True)
 
     num_iters = 20
+
+    print(logistic_problem.lipschitz(1))
+    print(logistic_problem.lipschitz(2))
+    print("Third order Lipschitz constant:")
+    print(logistic_problem.lipschitz(3))
 
     # Gradient Descent
     print("Gradient Descent\n=================")

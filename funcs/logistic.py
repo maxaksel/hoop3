@@ -4,7 +4,7 @@
 This module contains the problem definition for binary logistic regression.
 
 Author: Max A. Bowman
-Date: 2/21/2024
+Date: 4/19/2024
 """
 
 from typing import Tuple
@@ -209,6 +209,16 @@ class LogisticFunctions(HoopProblem):
             return 1 / (6 * np.sqrt(3)) * (1 / self.data_matrix.shape[0]) * np.max(
                 np.linalg.norm(self.data_matrix, axis=0)) * max_sigma  # TODO: Verify
         elif p == 3:
-            return 1000000
+            l3 = 0.0
+            N = self.data_matrix.shape[0]
+            d = self.data_matrix.shape[1]
+            for w in range(d):
+                for j in range(d):
+                    for k in range(d):
+                        for l in range(d):
+                            for i in range(N):
+                                l3 += (self.data_matrix[i, w] * self.data_matrix[i, j] * self.data_matrix[i, k] * self.data_matrix[i, l]) ** 2
+            l3 /= (8*N)
+            return l3
 
         return -1
