@@ -23,11 +23,11 @@ if __name__ == '__main__':
     d = dimensions[dataset]  # dimension of data (not including bias feature)
     N = X.shape[0]
 
-    logistic_problem = LogisticFunctions(data_matrix=X, labels=y, use_gpu=False)
+    logistic_problem = LogisticFunctions(data_matrix=X, labels=y, use_gpu=True)
 
     theta_hat = np.random.rand(d + 1).astype(np.float32)
     orig_theta_hat = np.copy(theta_hat)
-    num_iters = 500
+    num_iters = 100
 
     print(type(X))
     print(type(theta_hat))

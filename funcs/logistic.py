@@ -178,22 +178,12 @@ class LogisticFunctions(HoopProblem):
         if p == 2:
             return loss, gradient, H  # if p == 2
 
-        # Compute third-order tensor
-        T = np.zeros((self.data_matrix.shape[1], self.data_matrix.shape[1], self.data_matrix.shape[1]), dtype=np.float32)
+        # Compute an array that allows for the computation of D^3 f [h, h]
+        one_plus_exp = 1 + np.exp(-labels_data_matrix_times_theta)
+        third_order_array = (self.labels / np.square(one_plus_exp)) * (2*np.exp(-2*labels_data_matrix_times_theta) / one_plus_exp - np.exp(-labels_data_matrix_times_theta))
+        third_order_func = lambda h: self.data_matrix.T @ (third_order_array * np.square(np.dot(self.labels @ self.data_matrix, h)))
 
-        third_order_lookup = self.labels * (np.exp(labels_data_matrix_times_theta) + np.exp(-labels_data_matrix_times_theta))
-        third_order_lookup /= np.square(np.exp(labels_data_matrix_times_theta) - np.exp(-labels_data_matrix_times_theta))
-        # print("LOOKUP size:")
-        # print(third_order_lookup.shape)
-
-        for j in range(self.data_matrix.shape[1]):
-            for k in range(self.data_matrix.shape[1]):
-                for l in range(self.data_matrix.shape[1]):
-                    T[j, k, l] = 0.0
-                    for i in range(self.data_matrix.shape[0]):
-                        T[j, k, l] -= (1/self.data_matrix.shape[0]) * self.data_matrix[i, j] * self.data_matrix[i, k] \
-                                        * self.data_matrix[i, l] * third_order_lookup[i]
-        return loss, gradient, H, T
+        return loss, gradient, H, third_order_func
 
     @overrides
     def lipschitz(self, p: int) -> float:
@@ -209,11 +199,16 @@ class LogisticFunctions(HoopProblem):
 
         :return: upper bound of the p-order Lipschitz constant.
         """
+        if p < 1 or p > 3:
+            raise Exception("Lipschitz constant of this order not implemented!")
+
         max_sigma = scipy.linalg.svdvals(self.data_matrix)[0]
         if p == 1:
             return (1 / (4 * self.data_matrix.shape[0])) * max_sigma * max_sigma
         elif p == 2:
             return 1 / (6 * np.sqrt(3)) * (1 / self.data_matrix.shape[0]) * np.max(
                 np.linalg.norm(self.data_matrix, axis=0)) * max_sigma  # TODO: Verify
+        elif p == 3:
+            return 1000000
 
         return -1

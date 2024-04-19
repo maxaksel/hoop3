@@ -239,7 +239,7 @@ def cubic_newton(start_theta: np.array, num_iters: int, problem: HoopProblem,
         r_star = newton(opt_subproblem_a, 0.5, fprime=opt_subproblem_a_prime,
                         fprime2=opt_subproblem_a_prime2, args=(Lambda, g_bar, M))
 
-        print(f"r_star: {r_star}")
+        # print(f"r_star: {r_star}")
         if r_star < 0:
             raise Exception(f"r < 0!     r={r_star}")
 
@@ -261,7 +261,7 @@ def acc_cubic_newton(start_theta: np.array, num_iters: int, problem: HoopProblem
     """
     loss = np.zeros((int(num_iters),), dtype=np.float32)
     loss_grad = np.zeros((int(num_iters),), dtype=np.float32)
-    L3 = problem.lipschitz(2)
+    L3 = problem.lipschitz(2) * 5
     M = 2*L3
     N = 12*L3
 
@@ -294,20 +294,20 @@ def acc_cubic_newton(start_theta: np.array, num_iters: int, problem: HoopProblem
         if r_star < 0:
             raise Exception(f"r < 0!     r={r_star}")
 
-        h_slow = fsolve(grad_f_reg, np.zeros(len(start_theta)), args=(theta_hat, y_grad, H, M))
-        print(f"H_SLOW: {h_slow}")
+        # h_slow = fsolve(grad_f_reg, np.zeros(len(start_theta)), args=(theta_hat, y_grad, H, M))
+        # print(f"H_SLOW: {h_slow}")
         # h_slow = next_theta_hat - theta_hat
         h2 = np.linalg.lstsq((np.diag(Lambda) + M * r_star / 2 * np.eye(H.shape[0])) @ U.T, -g_bar, rcond=None)[0]
-        h = -U@np.linalg.inv(np.diag(Lambda) + M*r_star/2*np.eye(H.shape[0]))@g_bar
+        # h = -U@np.linalg.inv(np.diag(Lambda) + M*r_star/2*np.eye(H.shape[0]))@g_bar
 
-        print("DIFF:")
-        print(np.linalg.norm(h2 - h_slow))
-        # theta_hat = fsolve(grad_f_reg, np.zeros(len(theta_hat),), args=(theta_hat, y_grad, H, M))
-        print("grad_f_reg:")
+        # print("DIFF:")
+        # print(np.linalg.norm(h2 - h_slow))
+        # # theta_hat = fsolve(grad_f_reg, np.zeros(len(theta_hat),), args=(theta_hat, y_grad, H, M))
+        # print("grad_f_reg:")
         _, grads, H = problem.p_order_info(2, theta_hat)
-        print(np.linalg.norm(grad_f_reg_step(np.real(h_slow), grads, H, M)))
+        # print(np.linalg.norm(grad_f_reg_step(np.real(h_slow), grads, H, M)))
 
-        theta_hat += np.real(h_slow)
+        theta_hat += np.real(h2)
 
     return loss, loss_grad, theta_hat
 

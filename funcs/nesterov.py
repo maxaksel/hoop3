@@ -91,7 +91,7 @@ class NesterovFunctions(HoopProblem):
         """
 
         # return 2 * 2 * math.factorial(p)
-        return (2 ** 1.5) * math.factorial(p)
+        return 2 * math.factorial(p)
 
     def ideal_minimum(self) -> float:
         """

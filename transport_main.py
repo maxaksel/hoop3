@@ -12,15 +12,16 @@ import scipy
 from funcs.transport import OptimalTransport
 from opt.opt1 import gradient_descent, acc_gradient_descent
 from opt.opt2 import newton_plain, cubic_newton_slow, cubic_newton, acc_cubic_newton
+from opt.opt3 import hyperfast
 import matplotlib.pyplot as plt
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    n = 100
+    n = 25
     gamma = 0.1
 
-    transport_problem = OptimalTransport(n=n, gamma=gamma, use_gpu=True)
+    transport_problem = OptimalTransport(n=n, gamma=gamma, use_gpu=False)
 
     for p in range(1, 4):
         print(f"{p}-order Lipschitz: {transport_problem.lipschitz(p)}")
@@ -46,14 +47,14 @@ if __name__ == '__main__':
     # p[0] = 1 - 99*epsilon
     # q[-1] = 1 - 99*epsilon
 
-    # plt.figure()
-    # plt.stem(p)
-    # plt.show()
-    #
-    # plt.figure()
-    # plt.stem(q)
-    # plt.show()
-    #
+    plt.figure()
+    plt.stem(p)
+    plt.show()
+
+    plt.figure()
+    plt.stem(q)
+    plt.show()
+
     transport_problem.set_distributions(p, q)
     #
     # print(np.max(scipy.linalg.eigvals(transport_problem.A @ transport_problem.At)))
@@ -64,7 +65,7 @@ if __name__ == '__main__':
     # plt.stem(scipy.linalg.eigvals(transport_problem.A @ transport_problem.At))
     # plt.show()
     #
-    num_iters = 200
+    num_iters = 50
 
     # Gradient Descent
     theta_hat = np.random.rand(2 * n)
@@ -84,25 +85,45 @@ if __name__ == '__main__':
 
     # Cubic Regularization Slow
     theta_hat = np.copy(orig_theta_hat)
-    print("Performing Newton's method with cubic regularization...")
+    print("Performing Newton's method with cubic regularization (slow)...")
     loss_na2, grad_na2, theta_ncs = cubic_newton_slow(theta_hat, num_iters, transport_problem)
 
     # Cubic Regularization Fast
     theta_hat = np.copy(orig_theta_hat)
-    print("Performing accelerated Newton's method with cubic regularization...")
+    print("Performing Newton's method with cubic regularization (fast)...")
     loss_a2, grad_a2, theta_ncf = cubic_newton(theta_hat, num_iters, transport_problem)
 
-    # Cubic Regularization Fast
+    # Hyperfast Method
     # theta_hat = np.copy(orig_theta_hat)
-    # print("Performing accelerated Newton's method with cubic regularization...")
-    # loss_acc2, grad_acc2, theta_acf = acc_cubic_newton(theta_hat, num_iters, transport_problem)
+    # print("Performing Hyperfast method")
+    # loss_3, grad_3, theta_3 = hyperfast(theta_hat, num_iters, transport_problem)
 
-    plt.plot(loss_gd, label="Gradient Descent")
-    plt.plot(loss_agd, label="Acc. Gradient Descent")
-    plt.plot(loss_newton, label="Quadratic Newton")
-    plt.plot(loss_na2, label="Cubic Reg. Newton Method (Slow)")
-    plt.plot(loss_a2, label="Cubic Reg. Newton Method (Fast)")
-    # plt.plot(loss_acc2, label="Acc. Cubic Reg. Newton Method")
+    # Accelerated Cubic Newton
+    theta_hat = np.copy(orig_theta_hat)
+    print("Performing accelerated Newton's method with cubic regularization...")
+    loss_acc2, grad_acc2, theta_acf = acc_cubic_newton(theta_hat, num_iters, transport_problem)
+
+    plt.semilogy(loss_gd, label="Gradient Descent")
+    plt.semilogy(loss_agd, label="Acc. Gradient Descent")
+    plt.semilogy(loss_newton, label="Quadratic Newton")
+    plt.semilogy(loss_na2, label="Cubic Reg. Newton Method (Slow)")
+    plt.semilogy(loss_a2, label="Cubic Reg. Newton Method (Fast)")
+    # plt.plot(loss_3, label="Hyperfast)")
+    plt.semilogy(loss_acc2, label="Acc. Cubic Reg. Newton Method")
+    plt.xlabel("Iterations")
+    plt.ylabel("Loss")
+    plt.legend()
+    plt.show()
+
+    plt.semilogy(grad_gd, label="Gradient Descent")
+    plt.semilogy(grad_agd, label="Acc. Gradient Descent")
+    plt.semilogy(grad_newton, label="Quadratic Newton")
+    plt.semilogy(grad_na2, label="Cubic Reg. Newton Method (Slow)")
+    plt.semilogy(grad_a2, label="Cubic Reg. Newton Method (Fast)")
+    # plt.plot(loss_3, label="Hyperfast)")
+    plt.semilogy(grad_acc2, label="Acc. Cubic Reg. Newton Method")
+    plt.xlabel("Iterations")
+    plt.ylabel("Gradient Norm")
     plt.legend()
     plt.show()
 

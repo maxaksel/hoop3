@@ -41,6 +41,19 @@ def hessian_smax(gamma, x: np.array) -> np.array:
     return 1/gamma * (np.diag(grad) - np.outer(grad, grad))
 
 
+def third_order_smax(gamma, x: np.array, h: np.array) -> np.array:
+    print(h.shape)
+    grad = grad_smax(gamma, x)
+    hessian = hessian_smax(gamma, x)
+
+    print(hessian.shape)
+
+    third_order_vec = 1/gamma * hessian @ np.square(h)
+    third_order_vec -= 2/gamma * np.dot(grad, h) * hessian @ h
+
+    return third_order_vec
+
+
 class OptimalTransport(HoopProblem):
     def __init__(self, n: int, gamma: float, use_gpu: bool):
         """
@@ -100,8 +113,8 @@ class OptimalTransport(HoopProblem):
         :param theta: generally referred to as lambda in the literature, this is xi stacked on eta.
         :return: a tuple with the loss, gradient, Hessian, etc.
         """
-        if p < 0 or p > 2:
-            raise Exception("0 <= p <= 2 is necessary.")
+        if p < 0 or p > 3:
+            raise Exception("0 <= p <= 3 is necessary.")
 
         smax_in = np.matmul(self.At, theta) - self.vecM
         loss = softmax(self.gamma, smax_in) - np.dot(theta, self.b)
@@ -127,6 +140,11 @@ class OptimalTransport(HoopProblem):
 
         if p == 2:
             return loss, grads, H
+
+        # Third-order information
+        print((self.At @ theta - self.vecM).shape)
+        T = lambda h: self.A @ third_order_smax(self.gamma, self.At @ theta - self.vecM, self.At @ h)
+        return loss, grads, H, T
 
     def wasserstein_distance(self, opt_lam: np.array) -> Tuple[np.array, np.array]:
         """
@@ -169,4 +187,4 @@ class OptimalTransport(HoopProblem):
         # # denominator = self.gamma ** p
         # # return numerator/denominator
         # return 10
-        return self.La * ((p+1)/np.log(p+2))**(p+1)*math.factorial(p)/np.power(self.gamma, p)
+        return self.La * ((p+1)/np.log(p+2))**(p+1)*math.factorial(p)/np.power(self.gamma, p) / 100

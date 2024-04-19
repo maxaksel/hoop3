@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     logistic_problem = LogisticFunctions(data_matrix=X, labels=y, use_gpu=True)
 
-    num_iters = 50
+    num_iters = 20
 
     # Gradient Descent
     print("Gradient Descent\n=================")
@@ -229,8 +229,8 @@ if __name__ == '__main__':
     plt.semilogy(loss_o2_q, label="Quadratic Newton")
     plt.semilogy(loss_o2_c, label="Cubic Newton Slow")
     plt.semilogy(loss_o2_cf, label="Cubic Newton Fast")
-    # plt.semilogy(loss_o2_accel, label="Acc. Cubic Newton")
-    plt.semilogy(loss_o3_accel, label="Hyperfast Slow")
+    plt.semilogy(loss_o2_accel, label="Acc. Cubic Newton")
+    plt.semilogy(loss_o3_accel, label="Hyperfast")
     plt.xlabel(r"Iterations")
     plt.ylabel(r"$l(\theta; X, y)$")
     plt.legend()
