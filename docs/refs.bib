@@ -1,0 +1,289 @@
+@article{Nesterov2006,
+  doi = {10.1007/s10107-006-0706-8},
+  url = {https://doi.org/10.1007/s10107-006-0706-8},
+  year = {2006},
+  month = apr,
+  publisher = {Springer Science and Business Media {LLC}},
+  volume = {108},
+  number = {1},
+  pages = {177--205},
+  author = {Yurii Nesterov and B.T. Polyak},
+  title = {Cubic regularization of Newton method and its global performance},
+  journal = {Mathematical Programming}
+}
+
+@inproceedings{pytorch,
+ author = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {H. Wallach and H. Larochelle and A. Beygelzimer and F. d\textquotesingle Alch\'{e}-Buc and E. Fox and R. Garnett},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {PyTorch: An Imperative Style, High-Performance Deep Learning Library},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Paper.pdf},
+ volume = {32},
+ year = {2019}
+}
+
+@article{libsvm,
+author = {Chang, Chih-Chung and Lin, Chih-Jen},
+title = {LIBSVM: A Library for Support Vector Machines},
+year = {2011},
+issue_date = {April 2011},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {2},
+number = {3},
+issn = {2157-6904},
+url = {https://doi.org/10.1145/1961189.1961199},
+doi = {10.1145/1961189.1961199},
+abstract = {LIBSVM is a library for Support Vector Machines (SVMs). We have been actively developing this package since the year 2000. The goal is to help users to easily apply SVM to their applications. LIBSVM has gained wide popularity in machine learning and many other areas. In this article, we present all implementation details of LIBSVM. Issues such as solving SVM optimization problems theoretical convergence multiclass classification probability estimates and parameter selection are discussed in detail.},
+journal = {ACM Trans. Intell. Syst. Technol.},
+month = {may},
+articleno = {27},
+numpages = {27},
+keywords = {Classification LIBSVM optimization regression support vector machines SVM}
+}
+
+@misc{dvurechensky2023nearoptimal,
+      title={Near-optimal tensor methods for minimizing the gradient norm of convex functions and accelerated primal-dual tensor methods}, 
+      author={Pavel Dvurechensky and Petr Ostroukhov and Alexander Gasnikov and César A. Uribe and Anastasiya Ivanova},
+      year={2023},
+      eprint={1912.03381},
+      archivePrefix={arXiv},
+      primaryClass={math.OC}
+}
+
+@book{Nesterov2018,
+  doi = {10.1007/978-3-319-91578-4},
+  url = {https://doi.org/10.1007/978-3-319-91578-4},
+  year = {2018},
+  publisher = {Springer International Publishing},
+  author = {Yurii Nesterov},
+  title = {Lectures on Convex Optimization}
+}
+
+@ARTICLE{2020SciPy-NMeth,
+  author  = {Virtanen, Pauli and Gommers, Ralf and Oliphant, Travis E. and
+            Haberland, Matt and Reddy, Tyler and Cournapeau, David and
+            Burovski, Evgeni and Peterson, Pearu and Weckesser, Warren and
+            Bright, Jonathan and {van der Walt}, St{\'e}fan J. and
+            Brett, Matthew and Wilson, Joshua and Millman, K. Jarrod and
+            Mayorov, Nikolay and Nelson, Andrew R. J. and Jones, Eric and
+            Kern, Robert and Larson, Eric and Carey, C J and
+            Polat, {\.I}lhan and Feng, Yu and Moore, Eric W. and
+            {VanderPlas}, Jake and Laxalde, Denis and Perktold, Josef and
+            Cimrman, Robert and Henriksen, Ian and Quintero, E. A. and
+            Harris, Charles R. and Archibald, Anne M. and
+            Ribeiro, Ant{\^o}nio H. and Pedregosa, Fabian and
+            {van Mulbregt}, Paul and {SciPy 1.0 Contributors}},
+  title   = {{{SciPy} 1.0: Fundamental Algorithms for Scientific
+            Computing in Python}},
+  journal = {Nature Methods},
+  year    = {2020},
+  volume  = {17},
+  pages   = {261--272},
+  adsurl  = {https://rdcu.be/b08Wh},
+  doi     = {10.1038/s41592-019-0686-2},
+}
+
+
+@InProceedings{pmlr-v125-bullins20a,
+  title = 	 {Highly smooth minimization of non-smooth problems},
+  author =       {Bullins, Brian},
+  booktitle = 	 {Proceedings of Thirty Third Conference on Learning Theory},
+  pages = 	 {988--1030},
+  year = 	 {2020},
+  editor = 	 {Abernethy, Jacob and Agarwal, Shivani},
+  volume = 	 {125},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {09--12 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v125/bullins20a/bullins20a.pdf},
+  url = 	 {https://proceedings.mlr.press/v125/bullins20a.html},
+  abstract = 	 { We establish improved rates for structured \emph{non-smooth} optimization problems by means of near-optimal higher-order accelerated methods. In particular, given access to a standard oracle model that provides a $p^{th}$ order Taylor expansion of a \emph{smoothed} version of the function, we show how to achieve $\eps$-optimality for the \emph{original} problem in $\tilde{O}_p\pa{\eps^{-\frac{2p+2}{3p+1}}}$ calls to the oracle. Furthermore, when $p=3$, we provide an efficient implementation of the near-optimal accelerated scheme that achieves an $O(\eps^{-4/5})$ iteration complexity, where each iteration requires $\tilde{O}(1)$ calls to a linear system solver. Thus, we go beyond the previous $O(\eps^{-1})$ barrier in terms of $\eps$ dependence, and in the case of $\ell_\infty$ regression and $\ell_1$-SVM, we establish overall improvements for some parameter settings in the moderate-accuracy regime. Our results also lead to improved high-accuracy rates for minimizing a large class of convex quartic polynomials.}
+}
+
+@book{nesterov2018lectures,
+  title={Lectures on Convex Optimization},
+  author={Nesterov, Y.},
+  isbn={9783319915784},
+  series={Springer Optimization and Its Applications},
+  url={https://books.google.com/books?id=IPh6DwAAQBAJ},
+  year={2018},
+  publisher={Springer International Publishing}
+}
+
+@misc{acc_gradient_princeton,
+  author = {Sebastien Bubeck},
+  title = {ORF523: Nesterov’s Accelerated Gradient Descent},
+  howpublished = {https://web.archive.org/web/20210302210908/https://blogs.princeton.edu
+                  /imabandit/2013/04/01/acceleratedgradientdescent/},
+  month        = "April",
+  year         = "2013",
+}
+
+@software{BowmanHoop,
+  author = {Bowman, Max Aksel},
+  month = {April},
+  title = {{Higher Order Optimization Library 3 (Hoop3)}},
+  url = {https://github.com/maxaksel/hoop3},
+  version = {0.0.1},
+  year = {2024}
+}
+
+@article{Nesterov2019,
+  title = {Implementable tensor methods in unconstrained convex optimization},
+  volume = {186},
+  ISSN = {1436-4646},
+  url = {http://dx.doi.org/10.1007/s10107-019-01449-1},
+  DOI = {10.1007/s10107-019-01449-1},
+  number = {1–2},
+  journal = {Mathematical Programming},
+  publisher = {Springer Science and Business Media LLC},
+  author = {Nesterov,  Yurii},
+  year = {2019},
+  month = nov,
+  pages = {157–183}
+}
+
+@book{Brunton2019,
+  title = {Data-Driven Science and Engineering: Machine Learning,  Dynamical Systems,  and Control},
+  ISBN = {9781108422093},
+  url = {http://dx.doi.org/10.1017/9781108380690},
+  DOI = {10.1017/9781108380690},
+  publisher = {Cambridge University Press},
+  author = {Brunton,  Steven L. and Kutz,  J. Nathan},
+  year = {2019},
+  month = jan 
+}
+
+@misc{logistic_lipschitz_1,
+  author = {Jeremy Watt},
+  title = {6.2 Logistic Regression and the Cross Entropy Cost*},
+  howpublished = {https://jermwatt.github.io/machine\_learning\_refined/notes/6\_Linear
+                  \_twoclass\_classification/6\_2\_Cross\_entropy.html}
+}
+
+@article{AccNesterov2007,
+  title = {Accelerating the cubic regularization of Newton’s method on convex problems},
+  volume = {112},
+  ISSN = {1436-4646},
+  url = {http://dx.doi.org/10.1007/s10107-006-0089-x},
+  DOI = {10.1007/s10107-006-0089-x},
+  number = {1},
+  journal = {Mathematical Programming},
+  publisher = {Springer Science and Business Media LLC},
+  author = {Nesterov,  Yu.},
+  year = {2007},
+  month = jan,
+  pages = {159–181}
+}
+
+@Article{         numpy,
+ title         = {Array programming with {NumPy}},
+ author        = {Charles R. Harris and K. Jarrod Millman and St{\'{e}}fan J.
+                 van der Walt and Ralf Gommers and Pauli Virtanen and David
+                 Cournapeau and Eric Wieser and Julian Taylor and Sebastian
+                 Berg and Nathaniel J. Smith and Robert Kern and Matti Picus
+                 and Stephan Hoyer and Marten H. van Kerkwijk and Matthew
+                 Brett and Allan Haldane and Jaime Fern{\'{a}}ndez del
+                 R{\'{i}}o and Mark Wiebe and Pearu Peterson and Pierre
+                 G{\'{e}}rard-Marchant and Kevin Sheppard and Tyler Reddy and
+                 Warren Weckesser and Hameer Abbasi and Christoph Gohlke and
+                 Travis E. Oliphant},
+ year          = {2020},
+ month         = sep,
+ journal       = {Nature},
+ volume        = {585},
+ number        = {7825},
+ pages         = {357--362},
+ doi           = {10.1038/s41586-020-2649-2},
+ publisher     = {Springer Science and Business Media {LLC}},
+ url           = {https://doi.org/10.1038/s41586-020-2649-2}
+}
+
+@ARTICLE{scipy,
+  author  = {Virtanen, Pauli and Gommers, Ralf and Oliphant, Travis E. and
+            Haberland, Matt and Reddy, Tyler and Cournapeau, David and
+            Burovski, Evgeni and Peterson, Pearu and Weckesser, Warren and
+            Bright, Jonathan and {van der Walt}, St{\'e}fan J. and
+            Brett, Matthew and Wilson, Joshua and Millman, K. Jarrod and
+            Mayorov, Nikolay and Nelson, Andrew R. J. and Jones, Eric and
+            Kern, Robert and Larson, Eric and Carey, C J and
+            Polat, {\.I}lhan and Feng, Yu and Moore, Eric W. and
+            {VanderPlas}, Jake and Laxalde, Denis and Perktold, Josef and
+            Cimrman, Robert and Henriksen, Ian and Quintero, E. A. and
+            Harris, Charles R. and Archibald, Anne M. and
+            Ribeiro, Ant{\^o}nio H. and Pedregosa, Fabian and
+            {van Mulbregt}, Paul and {SciPy 1.0 Contributors}},
+  title   = {{{SciPy} 1.0: Fundamental Algorithms for Scientific
+            Computing in Python}},
+  journal = {Nature Methods},
+  year    = {2020},
+  volume  = {17},
+  pages   = {261--272},
+  adsurl  = {https://rdcu.be/b08Wh},
+  doi     = {10.1038/s41592-019-0686-2},
+}
+
+@software{jax2018github,
+  author = {James Bradbury and Roy Frostig and Peter Hawkins and Matthew James Johnson and Chris Leary and Dougal Maclaurin and George Necula and Adam Paszke and Jake Vander{P}las and Skye Wanderman-{M}ilne and Qiao Zhang},
+  title = {{JAX}: composable transformations of {P}ython+{N}um{P}y programs},
+  url = {http://github.com/google/jax},
+  version = {0.3.13},
+  year = {2018},
+}
+
+@inproceedings{numba,
+author = {Lam, Siu Kwan and Pitrou, Antoine and Seibert, Stanley},
+title = {Numba: a LLVM-based Python JIT compiler},
+year = {2015},
+isbn = {9781450340052},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2833157.2833162},
+doi = {10.1145/2833157.2833162},
+abstract = {Dynamic, interpreted languages, like Python, are attractive for domain-experts and scientists experimenting with new ideas. However, the performance of the interpreter is often a barrier when scaling to larger data sets. This paper presents a just-in-time compiler for Python that focuses in scientific and array-oriented computing. Starting with the simple syntax of Python, Numba compiles a subset of the language into efficient machine code that is comparable in performance to a traditional compiled language. In addition, we share our experience in building a JIT compiler using LLVM[1].},
+booktitle = {Proceedings of the Second Workshop on the LLVM Compiler Infrastructure in HPC},
+articleno = {7},
+numpages = {6},
+keywords = {LLVM, Python, compiler},
+location = {Austin, Texas},
+series = {LLVM '15}
+}
+
+@misc{lu2017relativelysmooth,
+      title={Relatively-Smooth Convex Optimization by First-Order Methods, and Applications}, 
+      author={Haihao Lu and Robert M. Freund and Yurii Nesterov},
+      year={2017},
+      eprint={1610.05708},
+      archivePrefix={arXiv},
+      primaryClass={math.OC}
+}
+
+@misc{mishchenko2023regularized,
+      title={Regularized Newton Method with Global $O(1/k^2)$ Convergence}, 
+      author={Konstantin Mishchenko},
+      year={2023},
+      eprint={2112.02089},
+      archivePrefix={arXiv},
+      primaryClass={math.OC}
+}
+
+@misc{cmu,
+    author={Ryan Tibshirani},
+    title={Newton's Method},
+    year={2015},
+    url={https://www.stat.cmu.edu/~ryantibs/convexopt-S15/lectures/14-newton.pdf},
+    publisher={Carnegie Mellon University}
+}
+
+@MISC {frobenius,
+    TITLE = {Why is the Frobenius norm of a matrix greater than or equal to the spectral norm?},
+    AUTHOR = {Stan (https://math.stackexchange.com/users/15023/stan)},
+    HOWPUBLISHED = {Mathematics Stack Exchange},
+    NOTE = {URL:https://math.stackexchange.com/q/746133 (version: 2015-09-13)},
+    EPRINT = {https://math.stackexchange.com/q/746133},
+    URL = {https://math.stackexchange.com/q/746133}
+}
+

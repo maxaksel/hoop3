@@ -54,10 +54,10 @@ if __name__ == '__main__':
 
     num_iters = 20
 
-    print(logistic_problem.lipschitz(1))
-    print(logistic_problem.lipschitz(2))
-    print("Third order Lipschitz constant:")
-    print(logistic_problem.lipschitz(3))
+    # print(logistic_problem.lipschitz(1))
+    # print(logistic_problem.lipschitz(2))
+    # print("Third order Lipschitz constant:")
+    # print(logistic_problem.lipschitz(3))
 
     # Gradient Descent
     print("Gradient Descent\n=================")
